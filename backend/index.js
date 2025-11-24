@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import app from "./app.js";
-import { PORT } from "./config/constanst.js";
-import connectDB from "./config/database.js";
+import { PORT } from "./src/config/constanst.js";
+import connectDB from "./src/config/database.js";
 
 dotenv.config();
 
