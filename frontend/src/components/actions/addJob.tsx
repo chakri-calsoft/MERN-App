@@ -8,6 +8,7 @@ interface AddJobProps {
 const AddJob: React.FC<AddJobProps> = ({ setLocalData }) => {
   const [state, setState] = useState(false);
   const [formData, setFormData] = useState({
+    id: "",
     title: "",
     requestedBy: "",
     positions: "",
@@ -27,14 +28,20 @@ const AddJob: React.FC<AddJobProps> = ({ setLocalData }) => {
       setLocalData((prevData) => [
         ...prevData,
         {
-          id: prevData.length + 1,
+          id: Date.now().toString(),
           title: formData.title,
-          createdBy: { displayName: formData.requestedBy },
-          numberOfPositions: formData.positions,
+          requestedBy: formData.requestedBy,
+          positions: formData.positions,
           status: formData.status,
         },
       ]);
-      setFormData({ title: "", requestedBy: "", positions: "", status: "" });
+      setFormData({
+        id: "",
+        title: "",
+        requestedBy: "",
+        positions: "",
+        status: "",
+      });
       setState(false);
     } else {
       alert("All fields are required!");

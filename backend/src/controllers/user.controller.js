@@ -1,4 +1,4 @@
-import { User } from "../modals/user.modal.js";
+import { User } from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
@@ -37,7 +37,7 @@ const loginUser = async (req, res) => {
     if (!user || !isMatchingPassword) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
+    const token = jwt.sign({ id: user.email }, process.env.JWT_SECRET_KEY, {
       expiresIn: "1h",
     });
     res.status(201).json({ token });
